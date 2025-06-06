@@ -18,44 +18,40 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 20px;
     position: relative;
+}
 
-    .container {
-        width: 100%;
-        max-width: 1000px;
-        /* 限制最大宽度，避免在超宽屏上过度拉伸 */
-        margin: 0 auto;
-        /* 水平居中的经典写法 */
+.container {
+    width: 100%;
+    max-width: 1000px;
+    /* 限制最大宽度，避免在超宽屏上过度拉伸 */
+    margin: 0 auto;
+    /* 水平居中的经典写法 */
 
-        /* 
-          媒体查询：响应式设计
-          @media (max-width: 768px) 表示屏幕宽度小于等于768px时应用的样式
-          通常768px是平板和手机的分界点
-        */
-        @media (max-width: 768px) {
-            max-width: 100%;
-            /* 小屏幕上占满宽度 */
-            padding: 0;
-        }
-
-        /* 平板尺寸：768px到1024px之间 */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            max-width: 600px;
-        }
-
-        /* 桌面尺寸：1024px到1200px之间 */
-        @media (min-width: 1024px) and (max-width: 1200px) {
-            max-width: 800px;
-        }
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+        max-width: 100%;
+        /* 小屏幕上占满宽度 */
+        padding: 0;
     }
 
-    .title {
-        text-align: center;
-        color: #fff;
-        margin-bottom: 30px !important;
-        /* !important：覆盖Ant Design的默认样式 */
-        /* text-shadow：文字阴影，格式为 x偏移 y偏移 模糊半径 颜色 */
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    /* 平板尺寸：768px到1024px之间 */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        max-width: 600px;
     }
+
+    /* 桌面尺寸：1024px到1200px之间 */
+    @media (min-width: 1024px) and (max-width: 1200px) {
+        max-width: 800px;
+    }
+}
+
+.title {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 30px !important;
+    /* !important：覆盖Ant Design的默认样式 */
+    /* text-shadow：文字阴影，格式为 x偏移 y偏移 模糊半径 颜色 */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* 右上角设置按钮 */
@@ -150,41 +146,89 @@
 }
 
 .earningsCard {
-    /* 收入卡片的渐变背景：从橙红色到粉红色 */
-    background: linear-gradient(135deg, #ff9a8b 0%, #ff6a88 100%);
+    /* 收入卡片的渐变背景：更柔和的蓝紫色调 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #7b68ee 100%);
     color: #fff;
+    /* 更现代化的圆角 */
+    border-radius: 20px !important;
+    /* 更柔和的阴影 */
+    box-shadow: 0 8px 32px rgba(118, 75, 162, 0.15), 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    /* 添加微妙的边框光泽 */
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     /* 修改Ant Design Card组件的内容区域样式 */
     :global(.ant-card-body) {
-        padding: 40px 24px;
-        /* 上下40px，左右24px */
+        padding: 48px 32px;
+        /* 增加内边距，创造更多呼吸感 */
     }
+}
 
-    .earningsDisplay {
-        text-align: center;
-    }
+.earningsDisplay {
+    text-align: center;
+    /* 添加更好的垂直间距 */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 
-    .earningsTitle {
-        color: #fff !important;
-        margin-bottom: 20px !important;
-        font-weight: 300;
-        /* 细体字重 */
-    }
+.earningsTitle {
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-bottom: 24px !important;
+    font-weight: 400;
+    /* 更轻的字重，更现代 */
+    font-size: 20px;
+    /* 稍微增大标题字号 */
+    letter-spacing: 0.5px;
+    /* 增加字符间距，更优雅 */
+}
 
-    .earningsAmount {
-        font-size: 48px;
-        /* 大字号突出收入数字 */
-        font-weight: 700;
-        /* 粗体 */
-        color: #fff;
-        margin: 20px 0;
-        /* 文字阴影让数字更立体 */
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        line-height: 1;
-        /* 行高为字体大小的1倍，紧凑显示 */
-        /* 等宽字体：数字变化时不会导致布局抖动 */
-        font-family: 'Monaco', 'Consolas', monospace;
-    }
+.earningsAmount {
+    font-size: 42px;
+    /* 减小数字大小，更平衡 */
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 16px 0;
+    /* 减少上下边距 */
+    /* 更柔和的文字阴影 */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    line-height: 1.1;
+    /* 现代化的等宽数字字体栈 */
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Menlo', 'Consolas', 'Courier New', monospace;
+    /* 启用数字等宽特性 */
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    letter-spacing: -0.01em;
+    /* 数字紧凑一些 */
+    /* 添加数字单位的一体化显示 */
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* 新增：状态信息样式优化 */
+.statusText {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    font-weight: 400;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* 新增：每秒收入信息优化 */
+.rateInfo {
+    color: rgba(255, 255, 255, 0.65) !important;
+    font-size: 14px !important;
+    font-weight: 400;
+    margin-top: 16px !important;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    display: inline-block;
 }
 
 .controlCard {
@@ -291,18 +335,50 @@
 */
 @media (max-width: 768px) {
     .salaryStopwatch {
-        padding: 10px;
-        /* 手机上减少外边距 */
+        padding: 16px;
+        /* 手机上适中的外边距 */
+    }
 
-        .title {
-            font-size: 24px !important;
-            /* 手机上标题字号小一些 */
+    .title {
+        font-size: 24px !important;
+        /* 手机上标题字号小一些 */
+    }
+
+    .earningsCard {
+        /* 手机上稍小的圆角 */
+        border-radius: 16px !important;
+
+        :global(.ant-card-body) {
+            padding: 32px 24px;
+            /* 手机上减少内边距 */
         }
     }
 
+    .earningsTitle {
+        font-size: 18px;
+        /* 手机上标题稍小 */
+        margin-bottom: 20px !important;
+    }
+
     /* 手机上收入数字也要相应缩小 */
-    .earningsCard .earningsAmount {
-        font-size: 36px;
+    .earningsAmount {
+        font-size: 32px;
+        /* 手机上数字更小，但仍然醒目 */
+        margin: 12px 0;
+        /* 保持相同的字体属性 */
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Menlo', 'Consolas', 'Courier New', monospace;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        letter-spacing: -0.01em;
+    }
+
+    .statusText {
+        font-size: 14px;
+    }
+
+    .rateInfo {
+        font-size: 12px !important;
+        padding: 6px 12px;
     }
 
     /* 手机上卡片间距更紧凑 */
@@ -310,7 +386,7 @@
     .statusCard,
     .earningsCard,
     .controlCard {
-        margin-bottom: 15px;
+        margin-bottom: 16px;
     }
 
     /* 手机上按钮占满宽度，垂直排列 */
@@ -323,39 +399,63 @@
 
 /* 桌面端优化：1200px以上的屏幕 */
 @media (min-width: 1200px) {
-    .salaryStopwatch {
 
-        /* 大屏幕上收入数字更大，更醒目 */
-        .earningsCard .earningsAmount {
-            font-size: 56px;
-        }
+    /* 大屏幕上收入数字更大，更醒目 */
+    .earningsAmount {
+        font-size: 48px;
+        /* 大屏幕上恢复较大字号 */
+        /* 保持相同的字体属性 */
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Menlo', 'Consolas', 'Courier New', monospace;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        letter-spacing: -0.01em;
+    }
 
-        /* 大屏幕上卡片间距更宽松 */
-        .configCard,
-        .statusCard,
-        .earningsCard,
-        .controlCard {
-            margin-bottom: 24px;
-        }
+    .earningsTitle {
+        font-size: 22px;
+        /* 大屏幕上标题更大 */
+    }
+
+    .statusText {
+        font-size: 17px;
+    }
+
+    .rateInfo {
+        font-size: 15px !important;
+    }
+
+    /* 大屏幕上卡片间距更宽松 */
+    .configCard,
+    .statusCard,
+    .earningsCard,
+    .controlCard {
+        margin-bottom: 24px;
     }
 }
 
 /* 超宽屏优化：1600px以上，通常是2K/4K显示器 */
 @media (min-width: 1600px) {
-    .salaryStopwatch {
-        .container {
-            max-width: 1200px;
-            /* 超宽屏时适当增加最大宽度 */
-        }
+    .container {
+        max-width: 1200px;
+        /* 超宽屏时适当增加最大宽度 */
+    }
 
-        .earningsCard .earningsAmount {
-            font-size: 64px;
-            /* 超大屏幕上使用更大字号 */
-        }
+    .earningsAmount {
+        font-size: 52px;
+        /* 超大屏幕上使用更大字号 */
+        /* 保持相同的字体属性 */
+        font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Menlo', 'Consolas', 'Courier New', monospace;
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum" 1;
+        letter-spacing: -0.01em;
+    }
 
-        .title {
-            font-size: 42px !important;
-            /* 标题也相应增大 */
-        }
+    .earningsTitle {
+        font-size: 24px;
+    }
+
+    .title {
+        font-size: 42px !important;
+        /* 标题也相应增大 */
     }
 }
