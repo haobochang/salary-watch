@@ -12,12 +12,7 @@ import {
   Space,
   message,
 } from 'antd';
-import {
-  PlayCircleOutlined,
-  PauseCircleOutlined,
-  SettingOutlined,
-  DollarOutlined,
-} from '@ant-design/icons';
+import { SettingOutlined, DollarOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import styles from './SalaryStopwatch.module.scss';
 
@@ -25,7 +20,6 @@ const { Title, Text } = Typography;
 
 const SalaryStopwatch = () => {
   const [form] = Form.useForm();
-  const [isRunning, setIsRunning] = useState(false);
   const [config, setConfig] = useState(null);
   const [currentEarnings, setCurrentEarnings] = useState(0);
   const [showSettings, setShowSettings] = useState(true);
@@ -45,57 +39,42 @@ const SalaryStopwatch = () => {
     }
   }, [form]);
 
-  // 计算当前收入
+  // 自动计算当前收入
   useEffect(() => {
     let timer;
-    if (isRunning && config) {
+    if (config) {
       timer = setInterval(() => {
         const now = dayjs();
         const today = now.format('YYYY-MM-DD');
         const startTime = dayjs(`${today} ${config.startTime}`);
         const endTime = dayjs(`${today} ${config.endTime}`);
 
-        // 检查是否在工作时间内
-        if (now.isBefore(startTime) || now.isAfter(endTime)) {
+        // 检查当前时间状态
+        if (now.isBefore(startTime)) {
+          // 还未上班，显示0
           setCurrentEarnings(0);
           return;
+        } else if (now.isAfter(endTime)) {
+          // 已经下班，显示全天收入（固定值）
+          const dailySalary = config.monthlySalary / 22; // 假设每月22个工作日
+          setCurrentEarnings(dailySalary);
+          return;
+        } else {
+          // 工作中，实时计算收入
+          const workedSeconds = now.diff(startTime, 'second');
+          const totalWorkSeconds = endTime.diff(startTime, 'second');
+          const dailySalary = config.monthlySalary / 22;
+          const secondSalary = dailySalary / totalWorkSeconds;
+          const earnings = workedSeconds * secondSalary;
+          setCurrentEarnings(Math.max(0, earnings));
         }
-
-        // 计算工作时长（精确到秒）
-        const workedSeconds = now.diff(startTime, 'second');
-        const totalWorkSeconds = endTime.diff(startTime, 'second');
-
-        // 计算日薪
-        const dailySalary = config.monthlySalary / 22; // 假设每月22个工作日
-        const secondSalary = dailySalary / totalWorkSeconds;
-
-        // 计算当前收入（精确到分）
-        const earnings = workedSeconds * secondSalary;
-        const newEarnings = Math.max(0, earnings);
-
-        // 更新数字
-        setCurrentEarnings(newEarnings);
-      }, 100); // 提高更新频率到100ms，更丝滑
+      }, 100); // 100ms更新频率，保持丝滑
     }
 
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [isRunning, config]);
-
-  const handleStart = () => {
-    if (!config) {
-      message.warning('请先设置薪资配置！');
-      return;
-    }
-    setIsRunning(true);
-    message.success('薪资计时开始！');
-  };
-
-  const handlePause = () => {
-    setIsRunning(false);
-    message.info('薪资计时已暂停');
-  };
+  }, [config]);
 
   const handleSaveConfig = values => {
     const configData = {
@@ -124,6 +103,20 @@ const SalaryStopwatch = () => {
       return { status: '已下班', color: '#52c41a' };
     } else {
       return { status: '工作中', color: '#1890ff' };
+    }
+  };
+
+  const getStatusMessage = () => {
+    const { status } = getCurrentStatus();
+    switch (status) {
+      case '未上班':
+        return '😴 还没到上班时间';
+      case '工作中':
+        return '💰 每秒都在赚钱中...';
+      case '已下班':
+        return '🎉 今日工作完成！';
+      default:
+        return '请先配置薪资信息';
     }
   };
 
@@ -227,10 +220,8 @@ const SalaryStopwatch = () => {
                 <div className={styles.earningsAmount}>
                   {currentEarnings.toFixed(4)} 元
                 </div>
-                <Text type='secondary'>
-                  {isRunning ? '💰 每秒都在赚钱中...' : '点击开始计时'}
-                </Text>
-                {config && isRunning && (
+                <Text type='secondary'>{getStatusMessage()}</Text>
+                {config && status === '工作中' && (
                   <div
                     style={{
                       marginTop: '10px',
@@ -255,27 +246,6 @@ const SalaryStopwatch = () => {
 
             <Card className={styles.controlCard}>
               <Space size='large'>
-                {!isRunning ? (
-                  <Button
-                    type='primary'
-                    size='large'
-                    icon={<PlayCircleOutlined />}
-                    onClick={handleStart}
-                    className={styles.startBtn}
-                  >
-                    开始计时
-                  </Button>
-                ) : (
-                  <Button
-                    size='large'
-                    icon={<PauseCircleOutlined />}
-                    onClick={handlePause}
-                    className={styles.pauseBtn}
-                  >
-                    暂停计时
-                  </Button>
-                )}
-
                 <Button
                   icon={<SettingOutlined />}
                   onClick={() => setShowSettings(true)}

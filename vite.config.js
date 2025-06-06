@@ -36,7 +36,7 @@ export default defineConfig({
   server: {
     port: 3000, // 开发服务器端口
     host: '0.0.0.0', // 允许外部访问（局域网内其他设备可访问）
-    open: true, // 启动时自动打开浏览器
+    open: false, // 启动时不自动打开浏览器
 
     // 热模块替换（HMR）配置：实现代码修改后的实时更新
     hmr: {
