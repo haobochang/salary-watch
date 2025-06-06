@@ -8,8 +8,6 @@ import {
   Typography,
   Row,
   Col,
-  Statistic,
-  Space,
   message,
 } from 'antd';
 import { SettingOutlined, DollarOutlined } from '@ant-design/icons';
@@ -120,7 +118,7 @@ const SalaryStopwatch = () => {
     }
   };
 
-  const { status, color } = getCurrentStatus();
+  const { status } = getCurrentStatus();
 
   return (
     <div className={styles.salaryStopwatch}>
@@ -186,31 +184,14 @@ const SalaryStopwatch = () => {
           </Card>
         ) : (
           <>
-            <Card className={styles.statusCard}>
-              <Row gutter={24}>
-                <Col span={8}>
-                  <Statistic
-                    title='当前状态'
-                    value={status}
-                    valueStyle={{ color }}
-                  />
-                </Col>
-                <Col span={8}>
-                  <Statistic
-                    title='月薪'
-                    value={config?.monthlySalary}
-                    suffix='元'
-                    formatter={value => value?.toLocaleString()}
-                  />
-                </Col>
-                <Col span={8}>
-                  <Statistic
-                    title='工作时间'
-                    value={`${config?.startTime} - ${config?.endTime}`}
-                  />
-                </Col>
-              </Row>
-            </Card>
+            <div className={styles.settingsButton}>
+              <Button
+                type='text'
+                icon={<SettingOutlined />}
+                onClick={() => setShowSettings(true)}
+                size='large'
+              />
+            </div>
 
             <Card className={styles.earningsCard}>
               <div className={styles.earningsDisplay}>
@@ -242,17 +223,6 @@ const SalaryStopwatch = () => {
                   </div>
                 )}
               </div>
-            </Card>
-
-            <Card className={styles.controlCard}>
-              <Space size='large'>
-                <Button
-                  icon={<SettingOutlined />}
-                  onClick={() => setShowSettings(true)}
-                >
-                  修改配置
-                </Button>
-              </Space>
             </Card>
           </>
         )}
