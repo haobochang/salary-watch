@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     <ConfigProvider locale={zhCN}>
-      <div className="App">
+      <div className='App'>
         <SalaryStopwatch />
       </div>
     </ConfigProvider>
