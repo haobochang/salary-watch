@@ -1,137 +1,225 @@
 # 薪资秒表 💰
 
-一个精美的前端薪资计算应用，可以实时显示你今天已经赚了多少钱！
+一个实时显示当天已赚取收入的React应用，让你直观感受每一秒的价值！
 
-## 🌟 功能特性
+## ✨ 功能特性
 
-- 📊 **实时收入计算** - 基于当前时间实时显示今日收入
-- ⚙️ **简单配置** - 只需输入月薪和工作时间
-- 💾 **本地存储** - 配置信息自动保存到浏览器
-- 📱 **响应式设计** - 支持手机和电脑访问
-- 🎨 **现代化UI** - 基于Ant Design的精美界面
-- 🎯 **CSS Modules** - 模块化样式管理，避免样式冲突
+- **实时收入计算** - 以秒为单位实时显示当前收入
+- **个性化配置** - 设置月薪、上下班时间
+- **状态显示** - 显示当前工作状态（未上班/工作中/已下班）
+- **响应式设计** - 完美适配手机、平板、桌面端
+- **数据持久化** - 配置信息自动保存到本地存储
 
-## 🛠️ 技术栈
+## 🚀 技术栈
 
-- ⚛️ React 19
-- ⚡ Vite
-- 🐜 Ant Design
-- 📏 ESLint 9.0 + Prettier
-- 📅 Day.js
-- 🎨 Sass + CSS Modules
+### 前端框架
+- **React 19** - 最新版本的React，支持并发特性
+- **Vite 6** - 现代化构建工具，开发体验极佳
 
-## 🚀 快速开始
+### UI组件库
+- **Ant Design 5** - 企业级UI组件库
+- **@ant-design/icons** - 图标组件
+
+### 样式方案
+- **Sass** - CSS预处理器，支持变量、嵌套、混合器
+- **CSS Modules** - 样式模块化，避免全局污染
+
+### 工具库
+- **Day.js** - 轻量级日期时间库（2KB），Moment.js的现代替代
+
+### 开发工具
+- **ESLint 9** - 代码质量检查
+- **Prettier** - 代码格式化
+- **Rollup Plugin Visualizer** - 构建分析工具
+
+## 📦 项目结构
+
+```
+salary-watch/
+├── public/                 # 静态资源
+├── src/
+│   ├── components/        # React组件
+│   │   ├── SalaryStopwatch.jsx          # 主组件
+│   │   └── SalaryStopwatch.module.scss  # 组件样式
+│   ├── App.jsx           # 根组件
+│   ├── App.module.scss   # 应用样式
+│   ├── main.jsx          # 应用入口
+│   └── index.scss        # 全局样式
+├── vite.config.js        # Vite配置
+├── eslint.config.js      # ESLint配置
+└── package.json          # 项目配置
+```
+
+## 🛠️ 开发指南
+
+### 环境要求
+- Node.js 18+
+- npm 或 yarn
 
 ### 安装依赖
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
-### 启动开发服务器
-\`\`\`bash
+### 开发命令
+
+```bash
+# 启动开发服务器（支持热重载）
 npm run dev
-\`\`\`
 
-### 构建生产版本
-\`\`\`bash
+# 构建生产版本
 npm run build
-\`\`\`
 
-### 代码检查和格式化
-\`\`\`bash
-npm run lint          # 检查代码质量
-npm run lint:fix       # 自动修复问题
-npm run format         # 格式化代码
-\`\`\`
+# 预览生产构建
+npm run preview
 
-## 📖 使用说明
+# 代码质量检查
+npm run lint
 
-1. **首次使用配置**
-   - 输入你的月薪
-   - 设置每天的上班和下班时间
-   - 点击"保存配置"
+# 自动修复代码问题
+npm run lint:fix
 
-2. **开始计时**
-   - 点击"开始计时"按钮
-   - 应用会根据当前时间实时计算今日收入
+# 格式化代码
+npm run format
+```
 
-3. **查看收入**
-   - 主界面显示今日已赚取的金额
-   - 状态栏显示当前工作状态（未上班/工作中/已下班）
+### 开发服务器特性
+- **热模块替换** - 代码修改后无需刷新页面
+- **错误覆盖层** - 编译错误直接显示在页面上
+- **自动打开浏览器** - 启动后自动打开默认浏览器
+- **局域网访问** - 支持手机等设备访问测试
 
-## 💡 计算原理
+## 🏗️ 构建优化
 
-- 日薪 = 月薪 / 22（每月工作日）
-- 秒薪资 = 日薪 / 工作时长（秒）
-- 当前收入 = 已工作秒数 × 秒薪资
+### 代码分割
+- **vendor.js** - React核心库
+- **antd.js** - Ant Design组件库
+- **utils.js** - 工具库（Day.js等）
 
-## 🎯 特色亮点
+### 性能特性
+- **Tree Shaking** - 自动移除未使用代码
+- **代码压缩** - 使用esbuild压缩，比terser更快
+- **Gzip/Brotli压缩** - 支持现代压缩算法
 
-- ✨ 渐变色背景，视觉效果优雅
-- 🔄 实时更新，每0.1秒刷新收入数据
-- 📱 移动端适配，随时随地查看
-- 🛡️ 类型安全，ESLint严格检查
-- 🎨 CSS Modules，样式模块化管理
+## 💡 核心算法
 
-## 🎨 CSS Modules 使用示例
+### 收入计算公式
+```javascript
+// 日薪计算
+const dailySalary = monthlySalary / 22; // 假设每月22个工作日
 
-本项目使用 CSS Modules 进行样式管理，支持以下特性：
+// 每秒收入
+const totalWorkSeconds = endTime.diff(startTime, 'second');
+const secondSalary = dailySalary / totalWorkSeconds;
 
-### 基本用法
-\`\`\`jsx
+// 当前收入
+const workedSeconds = now.diff(startTime, 'second');
+const currentEarnings = workedSeconds * secondSalary;
+```
+
+### 实时更新机制
+- 使用 `setInterval` 每100ms更新一次
+- 精确到秒级的时间计算
+- 使用 `useEffect` 清理定时器防止内存泄漏
+
+## 📱 响应式设计
+
+### 断点设计
+- **手机端**: < 768px
+- **平板端**: 768px - 1024px
+- **桌面端**: 1024px - 1200px
+- **大屏端**: > 1200px
+- **超宽屏**: > 1600px
+
+### 适配策略
+- 移动端优先的设计理念
+- 弹性布局和流式网格
+- 根据屏幕尺寸调整字体大小和间距
+
+## 🎨 设计特色
+
+### 视觉设计
+- **渐变背景** - 现代感的紫色渐变
+- **毛玻璃效果** - backdrop-filter实现的透明效果
+- **卡片阴影** - 层次分明的阴影设计
+- **动画过渡** - 流畅的悬停和点击效果
+
+### 交互体验
+- **即时反馈** - 按钮悬停效果
+- **状态指示** - 清晰的工作状态显示
+- **数据持久化** - 配置自动保存
+- **错误提示** - 友好的用户提示
+
+## 🔧 开发注意事项
+
+### CSS Modules使用
+```javascript
+// 导入样式
 import styles from './Component.module.scss';
 
-function Component() {
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>标题</h1>
-      <button className={styles.primaryBtn}>按钮</button>
-    </div>
-  );
+// 使用类名
+<div className={styles.container}>
+  <div className={styles.titleText}>
+</div>
+
+// 访问全局类名（如Ant Design）
+:global(.ant-card-body) {
+  padding: 20px;
 }
-\`\`\`
+```
 
-### Sass 变量和混合器
-\`\`\`scss
-// 自动导入全局变量和混合器
-.container {
-  background: $primary-gradient;
-  @include flex-center;
+### Day.js时间处理
+```javascript
+// 创建时间对象
+const now = dayjs();
+const startTime = dayjs('09:00', 'HH:mm');
+
+// 时间比较
+if (now.isBefore(startTime)) {
+  // 还没到上班时间
 }
 
-.primaryBtn {
-  @include gradient-button($success-gradient, #52c41a);
-}
-\`\`\`
+// 计算时间差
+const workedSeconds = now.diff(startTime, 'second');
+```
 
-### 类名约定
-- **camelCase**: \`className={styles.primaryBtn}\`
-- **kebab-case**: 自动转换为 camelCase
-- **全局样式**: 使用 \`:global(.ant-*)\` 访问 Ant Design 类名
+### React Hooks最佳实践
+```javascript
+// useEffect依赖数组
+useEffect(() => {
+  // 副作用逻辑
+}, [dependency1, dependency2]); // 明确列出所有依赖
 
-## 📁 项目结构
+// 清理函数
+useEffect(() => {
+  const timer = setInterval(() => {}, 1000);
+  
+  return () => {
+    clearInterval(timer); // 清理定时器
+  };
+}, []);
+```
 
-\`\`\`
-src/
-├── components/
-│   ├── SalaryStopwatch.jsx
-│   └── SalaryStopwatch.module.scss
-├── styles/
-│   ├── _variables.scss     # 全局变量
-│   └── _mixins.scss        # 混合器和工具函数
-├── App.jsx
-├── App.module.scss
-├── index.scss              # 全局基础样式
-└── main.jsx
-\`\`\`
+## 📈 性能优化建议
 
-## 🔧 开发特性
+1. **避免不必要的重渲染** - 使用React.memo包装纯组件
+2. **合理使用useCallback** - 缓存函数引用
+3. **懒加载组件** - 使用React.lazy动态导入
+4. **优化图片资源** - 使用WebP格式和合适尺寸
+5. **减少Bundle大小** - 按需引入第三方库
 
-- **热重载**: 保存时自动刷新浏览器
-- **样式作用域**: CSS Modules 避免样式冲突
-- **代码质量**: ESLint + Prettier 自动格式化
-- **构建优化**: 代码分割，优化加载性能
+## 🤝 贡献指南
 
-## �� 许可证
+1. Fork本项目
+2. 创建功能分支: `git checkout -b feature/amazing-feature`
+3. 提交更改: `git commit -m 'Add amazing feature'`
+4. 推送分支: `git push origin feature/amazing-feature`
+5. 提交Pull Request
 
-MIT License
+## 📄 许可证
+
+本项目采用MIT许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
+
+---
+
+**享受每一秒的价值！** ⏰💎
