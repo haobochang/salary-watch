@@ -2,22 +2,39 @@
 
 // 主容器
 .salaryStopwatch {
-    @include full-screen;
-    @include flex-center;
-    background: $primary-gradient;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 20px;
 
     .container {
         width: 100%;
-        max-width: $container-max-width;
+        max-width: 1000px; // 宽屏时的最大宽度
         margin: 0 auto;
+
+        // 不同屏幕尺寸的适配
+        @media (max-width: 768px) {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            max-width: 600px;
+        }
+
+        @media (min-width: 1024px) and (max-width: 1200px) {
+            max-width: 800px;
+        }
     }
 
     .title {
         text-align: center;
-        color: $white;
+        color: #fff;
         margin-bottom: 30px !important;
-        @include text-shadow;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -26,12 +43,15 @@
 .statusCard,
 .earningsCard,
 .controlCard {
-    @include card-style;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border: none;
 }
 
 .configCard {
     :global(.ant-card-head) {
-        border-bottom: 1px solid $gray-light;
+        border-bottom: 1px solid #f0f0f0;
         text-align: center;
 
         :global(.ant-card-head-title) {
@@ -42,8 +62,8 @@
 }
 
 .earningsCard {
-    background: $earnings-gradient;
-    color: $white;
+    background: linear-gradient(135deg, #ff9a8b 0%, #ff6a88 100%);
+    color: #fff;
 
     :global(.ant-card-body) {
         padding: 40px 24px;
@@ -54,7 +74,7 @@
     }
 
     .earningsTitle {
-        color: $white !important;
+        color: #fff !important;
         margin-bottom: 20px !important;
         font-weight: 300;
     }
@@ -62,11 +82,11 @@
     .earningsAmount {
         font-size: 48px;
         font-weight: 700;
-        color: $white;
+        color: #fff;
         margin: 20px 0;
-        text-shadow: 0 2px 8px $shadow-color;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         line-height: 1;
-        font-family: $font-mono;
+        font-family: 'Monaco', 'Consolas', monospace;
     }
 }
 
@@ -78,22 +98,57 @@
 
 // 按钮样式
 .startBtn {
-    @include gradient-button($success-gradient, #52c41a);
+    border: none;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(135deg, #52c41a, #389e0d);
+    box-shadow: 0 4px 15px rgba(82, 196, 26, 0.4);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(82, 196, 26, 0.5);
+    }
+
+    &:focus,
+    &:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
+    }
 }
 
 .pauseBtn {
-    @include gradient-button($warning-gradient, #faad14);
-    color: $white;
+    border: none;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(135deg, #faad14, #fa8c16);
+    box-shadow: 0 4px 15px rgba(250, 173, 20, 0.4);
+    color: #fff;
 
     &:hover {
-        color: $white;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(250, 173, 20, 0.5);
+        color: #fff;
+    }
+
+    &:focus,
+    &:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
     }
 }
 
 // 状态卡片
 .statusCard {
     :global(.ant-statistic-title) {
-        color: $gray-medium;
+        color: #666;
         font-weight: 500;
     }
 
@@ -102,14 +157,10 @@
     }
 }
 
-// 响应式设计
-@include mobile {
+// 手机端响应式设计
+@media (max-width: 768px) {
     .salaryStopwatch {
         padding: 10px;
-
-        .container {
-            max-width: 100%;
-        }
 
         .title {
             font-size: 24px !important;
@@ -131,5 +182,38 @@
     .pauseBtn {
         width: 100%;
         margin-bottom: 10px;
+    }
+}
+
+// 桌面端优化
+@media (min-width: 1200px) {
+    .salaryStopwatch {
+        .earningsCard .earningsAmount {
+            font-size: 56px; // 大屏幕上显示更大的字体
+        }
+
+        .configCard,
+        .statusCard,
+        .earningsCard,
+        .controlCard {
+            margin-bottom: 24px;
+        }
+    }
+}
+
+// 超宽屏优化
+@media (min-width: 1600px) {
+    .salaryStopwatch {
+        .container {
+            max-width: 1200px; // 超宽屏时稍大一些的最大宽度
+        }
+
+        .earningsCard .earningsAmount {
+            font-size: 64px; // 超宽屏上更大的字体
+        }
+
+        .title {
+            font-size: 42px !important;
+        }
     }
 }

@@ -12,51 +12,12 @@
 .App {
     width: 100%;
     min-height: 100vh;
+    display: block;
 }
 
 // 全局字体设置
 body {
-    font-family: $font-family-chinese;
-}
-
-// Logo 样式（如果需要的话）
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-
-    &:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-    }
-
-    &.react:hover {
-        filter: drop-shadow(0 0 2em #61dafbaa);
-    }
-}
-
-// Logo 旋转动画
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
-}
-
-// 其他样式
-.card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #888;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+        'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol';
 }
