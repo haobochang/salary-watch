@@ -1,0 +1,135 @@
+// 变量和混合器已通过 vite.config.js 全局导入
+
+// 主容器
+.salaryStopwatch {
+    @include full-screen;
+    @include flex-center;
+    background: $primary-gradient;
+    padding: 20px;
+
+    .container {
+        width: 100%;
+        max-width: $container-max-width;
+        margin: 0 auto;
+    }
+
+    .title {
+        text-align: center;
+        color: $white;
+        margin-bottom: 30px !important;
+        @include text-shadow;
+    }
+}
+
+// 卡片样式
+.configCard,
+.statusCard,
+.earningsCard,
+.controlCard {
+    @include card-style;
+}
+
+.configCard {
+    :global(.ant-card-head) {
+        border-bottom: 1px solid $gray-light;
+        text-align: center;
+
+        :global(.ant-card-head-title) {
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+}
+
+.earningsCard {
+    background: $earnings-gradient;
+    color: $white;
+
+    :global(.ant-card-body) {
+        padding: 40px 24px;
+    }
+
+    .earningsDisplay {
+        text-align: center;
+    }
+
+    .earningsTitle {
+        color: $white !important;
+        margin-bottom: 20px !important;
+        font-weight: 300;
+    }
+
+    .earningsAmount {
+        font-size: 48px;
+        font-weight: 700;
+        color: $white;
+        margin: 20px 0;
+        text-shadow: 0 2px 8px $shadow-color;
+        line-height: 1;
+        font-family: $font-mono;
+    }
+}
+
+.controlCard {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+// 按钮样式
+.startBtn {
+    @include gradient-button($success-gradient, #52c41a);
+}
+
+.pauseBtn {
+    @include gradient-button($warning-gradient, #faad14);
+    color: $white;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+// 状态卡片
+.statusCard {
+    :global(.ant-statistic-title) {
+        color: $gray-medium;
+        font-weight: 500;
+    }
+
+    :global(.ant-statistic-content) {
+        font-weight: 600;
+    }
+}
+
+// 响应式设计
+@include mobile {
+    .salaryStopwatch {
+        padding: 10px;
+
+        .container {
+            max-width: 100%;
+        }
+
+        .title {
+            font-size: 24px !important;
+        }
+    }
+
+    .earningsCard .earningsAmount {
+        font-size: 36px;
+    }
+
+    .configCard,
+    .statusCard,
+    .earningsCard,
+    .controlCard {
+        margin-bottom: 15px;
+    }
+
+    .startBtn,
+    .pauseBtn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

@@ -19,7 +19,7 @@ import {
   DollarOutlined,
 } from '@ant-design/icons';
 import dayjs from 'dayjs';
-import './SalaryStopwatch.css';
+import styles from './SalaryStopwatch.module.scss';
 
 const { Title, Text } = Typography;
 
@@ -130,14 +130,14 @@ const SalaryStopwatch = () => {
   const { status, color } = getCurrentStatus();
 
   return (
-    <div className='salary-stopwatch'>
-      <div className='container'>
-        <Title level={1} className='title'>
+    <div className={styles.salaryStopwatch}>
+      <div className={styles.container}>
+        <Title level={1} className={styles.title}>
           <DollarOutlined /> 薪资秒表
         </Title>
 
         {showSettings ? (
-          <Card title='薪资配置' className='config-card'>
+          <Card title='薪资配置' className={styles.configCard}>
             <Form form={form} onFinish={handleSaveConfig} layout='vertical'>
               <Form.Item
                 label='月薪（元）'
@@ -193,7 +193,7 @@ const SalaryStopwatch = () => {
           </Card>
         ) : (
           <>
-            <Card className='status-card'>
+            <Card className={styles.statusCard}>
               <Row gutter={24}>
                 <Col span={8}>
                   <Statistic
@@ -219,12 +219,12 @@ const SalaryStopwatch = () => {
               </Row>
             </Card>
 
-            <Card className='earnings-card'>
-              <div className='earnings-display'>
-                <Title level={2} className='earnings-title'>
+            <Card className={styles.earningsCard}>
+              <div className={styles.earningsDisplay}>
+                <Title level={2} className={styles.earningsTitle}>
                   今日收入
                 </Title>
-                <div className='earnings-amount'>
+                <div className={styles.earningsAmount}>
                   {currentEarnings.toFixed(4)} 元
                 </div>
                 <Text type='secondary'>
@@ -253,7 +253,7 @@ const SalaryStopwatch = () => {
               </div>
             </Card>
 
-            <Card className='control-card'>
+            <Card className={styles.controlCard}>
               <Space size='large'>
                 {!isRunning ? (
                   <Button
@@ -261,7 +261,7 @@ const SalaryStopwatch = () => {
                     size='large'
                     icon={<PlayCircleOutlined />}
                     onClick={handleStart}
-                    className='start-btn'
+                    className={styles.startBtn}
                   >
                     开始计时
                   </Button>
@@ -270,7 +270,7 @@ const SalaryStopwatch = () => {
                     size='large'
                     icon={<PauseCircleOutlined />}
                     onClick={handlePause}
-                    className='pause-btn'
+                    className={styles.pauseBtn}
                   >
                     暂停计时
                   </Button>

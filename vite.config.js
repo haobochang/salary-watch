@@ -19,6 +19,23 @@ export default defineConfig({
     }),
   ],
 
+  css: {
+    modules: {
+      // CSS Modules 配置
+      localsConvention: 'camelCase', // 支持驼峰命名
+      generateScopedName: '[name]__[local]___[hash:base64:5]', // 类名生成规则
+    },
+    preprocessorOptions: {
+      scss: {
+        // 全局导入变量和混合器
+        additionalData: `
+          @use "/src/styles/variables" as *;
+          @use "/src/styles/mixins" as *;
+        `,
+      },
+    },
+  },
+
   server: {
     port: 3000,
     host: '0.0.0.0',

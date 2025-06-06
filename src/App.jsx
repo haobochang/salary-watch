@@ -1,12 +1,12 @@
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import SalaryStopwatch from './components/SalaryStopwatch';
-import './App.css';
+import styles from './App.module.scss';
 
 function App() {
   return (
     <ConfigProvider locale={zhCN}>
-      <div className='App'>
+      <div className={styles.App}>
         <SalaryStopwatch />
       </div>
     </ConfigProvider>
