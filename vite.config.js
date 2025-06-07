@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { fileURLToPath, URL } from 'node:url';
 
 // Vite配置文件：现代前端构建工具的配置
 // https://vite.dev/config/
@@ -23,12 +24,27 @@ export default defineConfig({
     }),
   ],
 
+  // 路径别名配置
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+
   // CSS相关配置
   css: {
     modules: {
       // CSS Modules 配置：实现样式的模块化，避免全局污染
       localsConvention: 'camelCase', // 支持驼峰命名：class-name -> className
       generateScopedName: '[name]__[local]___[hash:base64:5]', // 类名生成规则：组件名__类名___哈希值
+    },
+    preprocessorOptions: {
+      scss: {
+        // 全局导入变量和混合器文件
+        additionalData: `@import "@/styles/variables.scss";`,
+        // 静默警告
+        quietDeps: true,
+      },
     },
   },
 

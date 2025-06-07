@@ -1,0 +1,28 @@
+.appTitle {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+}
+
+.title {
+  color: $white !important;
+  margin-bottom: 0 !important;
+  font-weight: $font-weight-medium;
+  @include text-shadow(0.3);
+
+  @include mobile {
+    font-size: 24px !important;
+  }
+
+  @include desktop {
+    font-size: 36px !important;
+  }
+
+  @include wide {
+    font-size: 42px !important;
+  }
+}
+
+.icon {
+  margin-right: $spacing-sm;
+  font-size: 0.9em;
+}

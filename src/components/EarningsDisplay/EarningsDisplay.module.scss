@@ -1,0 +1,132 @@
+.earningsCard {
+  @include gradient-bg($earnings-gradient);
+  color: $white;
+  border-radius: $radius-xl !important;
+  box-shadow: $shadow-earnings !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  :global(.ant-card-body) {
+    padding: $spacing-xxl $spacing-xl;
+  }
+
+  @include mobile {
+    border-radius: $radius-lg !important;
+
+    :global(.ant-card-body) {
+      padding: $spacing-xl $spacing-lg;
+    }
+  }
+}
+
+.content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.title {
+  color: $text-light !important;
+  margin-bottom: $spacing-lg !important;
+  font-weight: $font-weight-medium;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  @include text-shadow(0.3);
+
+  @include mobile {
+    font-size: 18px;
+    margin-bottom: $spacing-lg !important;
+  }
+
+  @include desktop {
+    font-size: 22px;
+  }
+
+  @include wide {
+    font-size: 24px;
+  }
+}
+
+.earningsValue {
+  font-size: 42px;
+  font-weight: $font-weight-bold;
+  color: $white;
+  margin: $spacing-md 0;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.6);
+  line-height: 1.1;
+  @include monospace-numbers;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: $spacing-xs;
+
+  @include mobile {
+    font-size: 32px;
+    margin: $spacing-sm 0;
+  }
+
+  @include desktop {
+    font-size: 48px;
+  }
+
+  @include wide {
+    font-size: 52px;
+  }
+}
+
+.value {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.unit {
+  font-size: 0.6em;
+  font-weight: $font-weight-normal;
+  opacity: 0.9;
+  margin-left: $spacing-xs;
+}
+
+.statusMessage {
+  color: $text-medium !important;
+  font-size: 16px !important;
+  font-weight: $font-weight-medium;
+  margin: $spacing-xs 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  @include text-shadow(0.3);
+
+  @include mobile {
+    font-size: 14px !important;
+  }
+
+  @include desktop {
+    font-size: 17px !important;
+  }
+}
+
+.rateInfo {
+  color: $text-dim !important;
+  font-size: 14px !important;
+  font-weight: $font-weight-medium;
+  margin-top: $spacing-md !important;
+  padding: $spacing-xs $spacing-md;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: $radius-md;
+  backdrop-filter: blur(10px);
+  display: inline-block;
+  @include text-shadow(0.2);
+
+  @include mobile {
+    font-size: 12px !important;
+    padding: 6px $spacing-sm;
+  }
+
+  @include desktop {
+    font-size: 15px !important;
+  }
+}

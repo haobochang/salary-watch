@@ -1,0 +1,119 @@
+// =====================================
+// 设计系统变量
+// =====================================
+
+// 颜色系统
+$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$earnings-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #7b68ee 100%);
+$success-gradient: linear-gradient(135deg, #52c41a, #389e0d);
+$warning-gradient: linear-gradient(135deg, #faad14, #fa8c16);
+
+// 基础颜色
+$white: #ffffff;
+$text-light: rgba(255, 255, 255, 0.95);
+$text-medium: rgba(255, 255, 255, 0.9);
+$text-dim: rgba(255, 255, 255, 0.85);
+$glass-bg: rgba(255, 255, 255, 0.95);
+
+// 间距系统
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// 圆角系统
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 20px;
+
+// 阴影系统
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+$shadow-earnings:
+  0 8px 32px rgba(118, 75, 162, 0.15),
+  0 4px 16px rgba(0, 0, 0, 0.08);
+
+// 过渡动画
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+
+// 字体系统
+$font-mono:
+  "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", "Menlo", "Consolas",
+  "Courier New", monospace;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// 响应式断点
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+$breakpoint-desktop: 1200px;
+$breakpoint-wide: 1600px;
+
+// =====================================
+// 混合器
+// =====================================
+
+// 毛玻璃效果
+@mixin glass-effect($bg-opacity: 0.95, $blur: 10px) {
+  background: rgba(255, 255, 255, $bg-opacity);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+// 文字阴影
+@mixin text-shadow($opacity: 0.3) {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, $opacity);
+}
+
+// 渐变背景
+@mixin gradient-bg($gradient) {
+  background: $gradient;
+}
+
+// 响应式断点
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: $breakpoint-wide) {
+    @content;
+  }
+}
+
+// 数字等宽字体
+@mixin monospace-numbers {
+  font-family: $font-mono;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  letter-spacing: -0.01em;
+}
+
+// 卡片基础样式
+@mixin card-base {
+  border-radius: $radius-md;
+  box-shadow: $shadow-lg;
+  border: none;
+  margin-bottom: $spacing-lg;
+}

@@ -1,0 +1,23 @@
+{
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "overrides": [
+        {
+            "files": [
+                "*.css",
+                "*.scss",
+                "*.sass"
+            ],
+            "options": {
+                "singleQuote": false,
+                "printWidth": 100
+            }
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+.configCard {
+  @include card-base;
+
+  :global(.ant-card-head) {
+    border-bottom: 1px solid #f0f0f0;
+    text-align: center;
+
+    :global(.ant-card-head-title) {
+      font-size: 18px;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  @include mobile {
+    margin-bottom: $spacing-md;
+  }
+
+  @include desktop {
+    margin-bottom: $spacing-lg;
+  }
+}

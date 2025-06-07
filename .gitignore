@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Package manager lock files (项目使用yarn，忽略npm lock)
+package-lock.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
