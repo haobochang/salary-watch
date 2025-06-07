@@ -77,8 +77,8 @@ export const formatDisplayValue = (
   disguiseMode?: boolean
 ): string => {
   if (disguiseMode) {
-    // 伪装模式下转换为卡路里：假设1元=10卡路里
-    return (currentEarnings * 10).toFixed(2);
+    // 伪装模式下直接显示卡路里（与薪资数值1:1对应）
+    return currentEarnings.toFixed(2);
   }
   return currentEarnings.toFixed(4);
 };
@@ -107,7 +107,7 @@ export const getSecondRateText = (config: SalaryConfig | null): string => {
 
   if (config.disguiseMode) {
     const secondCalories =
-      (config.monthlySalary / WORK_DAYS_PER_MONTH / totalWorkSeconds) * 10;
+      config.monthlySalary / WORK_DAYS_PER_MONTH / totalWorkSeconds;
     return `每秒燃烧: ${secondCalories.toFixed(2)} 卡路里`;
   } else {
     const secondSalary =

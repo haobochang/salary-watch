@@ -22,83 +22,90 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
+  align-items: center;
+  gap: $spacing-lg;
 }
 
 .title {
   color: $text-light !important;
-  margin-bottom: $spacing-lg !important;
-  font-weight: $font-weight-medium;
-  font-size: 20px;
-  letter-spacing: 0.5px;
-  @include text-shadow(0.3);
+  margin-bottom: 0 !important;
+  font-weight: $font-weight-semibold;
+  font-size: 24px;
+  letter-spacing: 0.8px;
+  @include text-shadow(0.4);
 
   @include mobile {
-    font-size: 18px;
-    margin-bottom: $spacing-lg !important;
+    font-size: 20px;
   }
 
   @include desktop {
-    font-size: 22px;
+    font-size: 26px;
   }
 
   @include wide {
-    font-size: 24px;
+    font-size: 28px;
   }
 }
 
 .earningsValue {
-  font-size: 42px;
-  font-weight: $font-weight-bold;
+  font-size: 56px;
+  font-weight: 900;
   color: $white;
-  margin: $spacing-md 0;
+  margin: $spacing-lg 0;
   text-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.4),
-    0 1px 2px rgba(0, 0, 0, 0.6);
-  line-height: 1.1;
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1;
   @include monospace-numbers;
 
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: $spacing-xs;
+  gap: $spacing-sm;
 
   @include mobile {
-    font-size: 32px;
-    margin: $spacing-sm 0;
+    font-size: 42px;
+    margin: $spacing-md 0;
+    gap: $spacing-xs;
   }
 
   @include desktop {
-    font-size: 48px;
+    font-size: 64px;
   }
 
   @include wide {
-    font-size: 52px;
+    font-size: 72px;
   }
 }
 
 .value {
   font-size: inherit;
   font-weight: inherit;
+  text-shadow: inherit;
 }
 
 .unit {
-  font-size: 0.6em;
-  font-weight: $font-weight-normal;
-  opacity: 0.9;
+  font-size: 0.5em;
+  font-weight: $font-weight-semibold;
+  opacity: 0.95;
   margin-left: $spacing-xs;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .statusMessage {
-  color: $text-medium !important;
+  color: rgba(255, 255, 255, 0.85) !important;
   font-size: 16px !important;
-  font-weight: $font-weight-medium;
-  margin: $spacing-xs 0;
+  font-weight: $font-weight-normal;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: $spacing-xs;
-  @include text-shadow(0.3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  opacity: 0.9;
 
   @include mobile {
     font-size: 14px !important;
@@ -110,23 +117,25 @@
 }
 
 .rateInfo {
-  color: $text-dim !important;
-  font-size: 14px !important;
-  font-weight: $font-weight-medium;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 13px !important;
+  font-weight: $font-weight-normal;
   margin-top: $spacing-md !important;
   padding: $spacing-xs $spacing-md;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: $radius-md;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
   display: inline-block;
-  @include text-shadow(0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  opacity: 0.8;
+  text-align: center;
 
   @include mobile {
-    font-size: 12px !important;
+    font-size: 11px !important;
     padding: 6px $spacing-sm;
   }
 
   @include desktop {
-    font-size: 15px !important;
+    font-size: 14px !important;
   }
 }

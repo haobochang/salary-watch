@@ -40,10 +40,11 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        // 全局导入变量和混合器文件
-        additionalData: `@import "@/styles/variables.scss";`,
-        // 静默警告
+        // 全局导入变量和混合器文件 (使用@use替代@import)
+        additionalData: `@use "@/styles/variables.scss" as *;`,
+        // 静默弃用警告
         quietDeps: true,
+        silenceDeprecations: ['import'],
       },
     },
   },
@@ -56,13 +57,12 @@ export default defineConfig({
 
     // 热模块替换（HMR）配置：实现代码修改后的实时更新
     hmr: {
-      port: 3000, // HMR WebSocket端口
       overlay: true, // 编译错误时在页面上显示错误覆盖层
     },
 
     // 文件监听配置：监听文件变化以触发重新构建
     watch: {
-      usePolling: true, // 使用轮询方式监听文件变化（解决某些系统的文件监听问题）
+      usePolling: false, // 关闭轮询，使用原生文件监听（性能更好）
     },
   },
 

@@ -1,4 +1,4 @@
-import type { SalaryConfig } from '../../types';
+import type { SalaryConfig } from '@/types';
 
 /**
  * 获取状态消息
